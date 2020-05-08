@@ -16,6 +16,7 @@
 		E967EED62465FD2A00EB8088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E967EED42465FD2A00EB8088 /* LaunchScreen.storyboard */; };
 		E967EEE12465FD2A00EB8088 /* CSC_690_FinalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEE02465FD2A00EB8088 /* CSC_690_FinalTests.swift */; };
 		E967EEEC2465FD2A00EB8088 /* CSC_690_FinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEEB2465FD2A00EB8088 /* CSC_690_FinalUITests.swift */; };
+		E967EEFA2465FDF600EB8088 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEF92465FDF600EB8088 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E967EEE72465FD2A00EB8088 /* CSC_690_FinalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSC_690_FinalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E967EEEB2465FD2A00EB8088 /* CSC_690_FinalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSC_690_FinalUITests.swift; sourceTree = "<group>"; };
 		E967EEED2465FD2A00EB8088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E967EEF92465FDF600EB8088 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				E967EED42465FD2A00EB8088 /* LaunchScreen.storyboard */,
 				E967EED72465FD2A00EB8088 /* Info.plist */,
 				E967EECF2465FD2600EB8088 /* CSC_690_Final.xcdatamodeld */,
+				E967EEF92465FDF600EB8088 /* Database.swift */,
 			);
 			path = CSC_690_Final;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				E967EECB2465FD2600EB8088 /* ViewController.swift in Sources */,
 				E967EEC72465FD2600EB8088 /* AppDelegate.swift in Sources */,
 				E967EED12465FD2600EB8088 /* CSC_690_Final.xcdatamodeld in Sources */,
+				E967EEFA2465FDF600EB8088 /* Database.swift in Sources */,
 				E967EEC92465FD2600EB8088 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
