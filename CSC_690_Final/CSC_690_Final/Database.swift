@@ -5,16 +5,20 @@
 //  Created by Osbaldo Martinez on 5/8/20.
 //  Copyright © 2020 Osbaldo Martinez. All rights reserved.
 //
+//  Contains the methods necessary to interface with coredata database.
+//
 
 import UIKit
 import CoreData
 
 //Saves a new task into database
-//accepts a String with the task and the Date to complete the task by.
-func saveToDatabase(nTask: String, nDate: Date) -> Void {
+//Accepts a String with the task, the Date to complete the task by,
+//and the date it was created.
+//Returns true on success, otherwise false
+func saveToDatabase(nTask: String, completionDate: Date, createdDate: Date) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
@@ -24,12 +28,19 @@ func saveToDatabase(nTask: String, nDate: Date) -> Void {
     task.setValue(nTask, forKey: "task")
     task.setValue(false, forKey: "complete")
     task.setValue(UUID.init().uuidString, forKey: "id")
-    task.setValue(nDate, forKey: "completeBy")
+    task.setValue(completionDate, forKey: "completeBy")
+    task.setValue(createdDate, forKey: "createdOn")
     
     do {
+        
         try managedContex.save()
+        return true
+        
     } catch let error as NSError {
+        
         print("Could not save. \(error), \(error.userInfo)")
+        return false
+        
     }
     
 }
@@ -51,8 +62,10 @@ func getAllFromDatabase() -> [NSManagedObject]? {
         return objectsToReturn
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
         return nil
+        
     }
     
 }
@@ -77,6 +90,7 @@ func getFromDatabaseById(taskId:String) -> NSManagedObject? {
         return objectToReturn
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
         return nil
     }
@@ -86,10 +100,11 @@ func getFromDatabaseById(taskId:String) -> NSManagedObject? {
 //Function that edits the task in the database.
 //Accepts a String with task id and a String with the new task.
 //It updates the task in the database.
-func editTaskById(taskId: String, newTask: String) -> Void {
+//Returns true on success, otherwise false
+func editTaskById(taskId: String, newTask: String) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
@@ -97,29 +112,39 @@ func editTaskById(taskId: String, newTask: String) -> Void {
     fetchRequest.predicate = NSPredicate(format: "id = %@", taskId)
     
     do {
+        
         let objs = try managedContex.fetch(fetchRequest)
         let objectToEdit = objs[0]
         objectToEdit.setValue(newTask, forKey: "task")
            
         do {
+            
             try managedContex.save()
+            return true
+            
         } catch let error as NSError {
+            
             print("Could not save. \(error), \(error.userInfo)")
+            return false
         }
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
+        return false
+        
     }
     
 }
 
 //Function that edits the date of task in the database.
 //Accepts a String with task id and a Date with the new date.
-//It updates the task in the database.
-func editTaskDateById(taskId: String, newDate: Date) -> Void {
+//It updates the date in the database.
+//Returns true on success, otherwise false
+func editTaskDateById(taskId: String, newDate: Date) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
@@ -133,13 +158,21 @@ func editTaskDateById(taskId: String, newDate: Date) -> Void {
         objectToEdit.setValue(newDate, forKey: "date")
            
         do {
+            
             try managedContex.save()
+            return true
+            
         } catch let error as NSError {
+            
             print("Could not save. \(error), \(error.userInfo)")
+            return false
         }
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
+        return false
+        
     }
     
 }
@@ -147,10 +180,11 @@ func editTaskDateById(taskId: String, newDate: Date) -> Void {
 //Marks the object as complete in database
 //Takes a String with the task id.
 //Updates the complete property to true in database.
-func markCompleteTask(taskId: String) -> Void {
+//Returns true on success, otherwise false
+func markCompleteTask(taskId: String) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
@@ -164,23 +198,33 @@ func markCompleteTask(taskId: String) -> Void {
         objectToEdit.setValue(true, forKey: "complete")
            
         do {
+            
             try managedContex.save()
+            return true
+            
         } catch let error as NSError {
+            
             print("Could not save. \(error), \(error.userInfo)")
+            return false
+            
         }
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
+        return false
+        
     }
     
 }
 
 //Deletes object from database.
 //Accepts an String with the id of the task to be deleted.
-func deleteObject(taskId: String) -> Void {
+//Returns true on success, otherwise false
+func deleteObject(taskId: String) -> Bool {
     
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
@@ -194,13 +238,22 @@ func deleteObject(taskId: String) -> Void {
         managedContex.delete(objectToDelete)
         
         do {
+            
             try managedContex.save()
+            return true
+            
         } catch let error as NSError {
+            
             print("Could not save. \(error), \(error.userInfo)")
+            return false
+            
         }
         
     } catch let error as NSError {
+        
         print("Could not fetch. \(error), \(error.userInfo)")
+        return false
+        
     }
     
 }
