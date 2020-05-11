@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E95C1ED4246A082D0098E2E8 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C1ED3246A082D0098E2E8 /* CalendarController.swift */; };
 		E967EEC72465FD2600EB8088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEC62465FD2600EB8088 /* AppDelegate.swift */; };
 		E967EEC92465FD2600EB8088 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEC82465FD2600EB8088 /* SceneDelegate.swift */; };
 		E967EECB2465FD2600EB8088 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EECA2465FD2600EB8088 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E95C1ED3246A082D0098E2E8 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		E967EEC32465FD2600EB8088 /* CSC_690_Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSC_690_Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E967EEC62465FD2600EB8088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E967EEC82465FD2600EB8088 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				E967EECF2465FD2600EB8088 /* CSC_690_Final.xcdatamodeld */,
 				E967EEF92465FDF600EB8088 /* Database.swift */,
 				E967EEFB2466641700EB8088 /* DatabaseController.swift */,
+				E95C1ED3246A082D0098E2E8 /* CalendarController.swift */,
 			);
 			path = CSC_690_Final;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				E967EECB2465FD2600EB8088 /* ViewController.swift in Sources */,
 				E967EEC72465FD2600EB8088 /* AppDelegate.swift in Sources */,
 				E967EEFC2466641700EB8088 /* DatabaseController.swift in Sources */,
+				E95C1ED4246A082D0098E2E8 /* CalendarController.swift in Sources */,
 				E967EED12465FD2600EB8088 /* CSC_690_Final.xcdatamodeld in Sources */,
 				E967EEFA2465FDF600EB8088 /* Database.swift in Sources */,
 				E967EEC92465FD2600EB8088 /* SceneDelegate.swift in Sources */,
