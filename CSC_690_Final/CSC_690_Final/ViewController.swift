@@ -36,14 +36,42 @@ struct Task {
 }
 
 class ViewController: UIViewController {
-
-    @IBAction func addTask(_ sender: Any) {
-    }
+    @IBOutlet var tableView: UITableView!
+    
+    var task: [Task] = []
+    var selectedRow: Int?
+    //var databaseFunc = DatabaseController()
+    var managedObjectContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
+        
+        //task = databaseFunc.getAllTask()
+        tableView.reloadData()
+    }
+    
+    @IBAction func addTask(_ sender: Any) {
     }
 
 
+}
+
+extension ViewController: UITableViewDelegate {
+    
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
 }
 
