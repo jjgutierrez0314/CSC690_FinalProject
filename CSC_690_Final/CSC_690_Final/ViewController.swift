@@ -38,55 +38,23 @@ struct Task {
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
-    var task: [Task] = []
+    var unfinishedTasks: [NSManagedObject] = []
     var selectedRow: Int?
-    //var databaseFunc = DatabaseController()
     var managedObjectContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Task List"
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
         
-        //task = databaseFunc.getAllTask()
+        unfinishedTasks = getAllTasks()
         tableView.reloadData()
     }
     
-    @IBAction func addTask(_ sender: Any) {
-        print("Adding a task")
-        let alert = UIAlertController(title: "New Task",message: "" ,preferredStyle: .alert)
-        
-        let done = UIAlertAction(title: "Add a New Task", style: .default) { _ in
-                   guard let taskName = alert.textFields?.first?.text else {
-                       return
-                   }
-                   let task = Task(task: taskName)
-
-                   self.task.append(task)
-                   //self.store.store(task: task)
-
-                   self.tableView.beginUpdates()
-                   
-                   let indexPath = IndexPath(row: self.task.count - 1, section: 0)
-                   
-                   self.tableView.insertRows(at: [indexPath], with: .automatic)
-                   
-                   self.tableView.endUpdates()
-                   print(taskName)
-                   
-               }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(done)
-        alert.addAction(cancel)
-        alert.addTextField { textField in
-            textField.placeholder = "Add a task"
-        }
-        present(alert, animated: true, completion: nil)
-    }
-
-
+    
+    
 }
 
 extension ViewController: UITableViewDelegate {
@@ -103,7 +71,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //store.delete(position: indexPath.row)
-            task.remove(at: indexPath.row)
+            unfinishedTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -112,13 +80,13 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.count
+        return unfinishedTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
-        let task = self.task[indexPath.row]
-        taskCell.textLabel?.text = task.task
+        let selectedTask = unfinishedTasks[indexPath.row]
+        taskCell.textLabel?.text = selectedTask.value(forKeyPath: "task") as? String
         taskCell.imageView?.image = UIImage(named: "uncheckedBox")
         return taskCell
     }
