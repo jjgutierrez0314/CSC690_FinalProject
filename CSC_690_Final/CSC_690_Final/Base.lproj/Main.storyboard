@@ -42,8 +42,7 @@
                     <navigationItem key="navigationItem" id="ylT-Xd-4Za">
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="bPC-6J-7bi">
                             <connections>
-                                <action selector="addTask:" destination="BYZ-38-t0r" id="Qtj-HI-DrV"/>
-                                <segue destination="mhc-3g-5TK" kind="show" id="3ft-eN-wol"/>
+                                <segue destination="mhc-3g-5TK" kind="show" id="wUN-V2-0ux"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -81,10 +80,6 @@
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qBs-2h-O1z">
                                 <rect key="frame" x="0.0" y="194" width="375" height="216"/>
-                                <connections>
-                                    <action selector="completeBy:" destination="mhc-3g-5TK" eventType="valueChanged" id="Tk7-LC-Jhl"/>
-                                    <action selector="completeBy:" destination="Bu3-Yu-BSw" eventType="valueChanged" id="YmP-sb-Fg2"/>
-                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVC-Tv-Khh">
                                 <rect key="frame" x="0.0" y="44" width="375" height="20.5"/>
@@ -132,13 +127,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="completeDate" destination="qBs-2h-O1z" id="YnY-2E-8ed"/>
+                        <outlet property="completeBy" destination="qBs-2h-O1z" id="r53-rD-OJu"/>
                         <outlet property="newTask" destination="FdO-oe-63l" id="Rdd-OW-z4A"/>
-                        <outlet property="task" destination="FdO-oe-63l" id="ORe-lI-oeu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxl-dB-dlq" sceneMemberID="firstResponder"/>
-                <exit id="Bu3-Yu-BSw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1002.8985507246377" y="95.758928571428569"/>
         </scene>

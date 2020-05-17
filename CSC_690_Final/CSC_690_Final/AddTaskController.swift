@@ -11,7 +11,7 @@ import UIKit
 class AddTaskController: UIViewController{
 
     @IBOutlet weak var newTask: UITextField!
-    @IBOutlet weak var completeDate: UIDatePicker!
+    @IBOutlet weak var completeBy: UIDatePicker!
     
     @IBAction func submitNewTask(_ sender: UIBarButtonItem) {
     }
