@@ -16,9 +16,12 @@ import CoreData
 func saveNewTask(task: String, completeDate: Date) -> [NSManagedObject] {
     
     let createdDate: Date = Date()
+    
     let success: Bool = saveToDatabase(nTask: task, completionDate: completeDate, createdDate: createdDate)
     
     if (success) {
+        addTaskToCalendar(with: createdDate, endDate: completeDate, task: task)
+        
         print("Successfully saved the task.")
     } else {
         print("Failed to save the task.")

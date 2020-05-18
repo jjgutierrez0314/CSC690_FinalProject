@@ -10,6 +10,7 @@ import UIKit
 import EventKit
 
 func daysToCompleteTask(start: Date, finish: Date) -> Int {
+    
     let currentCalendar: Calendar = Calendar.current
     
     guard let remainingDays: Int = currentCalendar.dateComponents([.day], from: start, to: finish).day else {
@@ -19,6 +20,7 @@ func daysToCompleteTask(start: Date, finish: Date) -> Int {
     
     print("There are \(remainingDays) days remaining.")
     return remainingDays
+    
 }
 
 func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
