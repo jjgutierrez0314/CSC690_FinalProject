@@ -9,32 +9,6 @@
 import UIKit
 import CoreData
 
-struct Task {
-    let task: String
-//    let createdOn: Date
-//    let completeBy: Date
-//    let complete: Bool
-    
-    init(task: String
-//        , createdOn: Date, completeBy: Date, complete: Bool
-    ) {
-        self.task = task
-//        self.createdOn = createdOn
-//        self.completeBy = completeBy
-//        self.complete = complete
-    }
-    
-    init?(managedObject: NSManagedObject) {
-        guard let task = managedObject.value(forKey: "task") as? String else {
-            return nil
-        }
-        self.task = task
-//        self.createdOn = createdOn
-//        self.completeBy = completeBy
-//        self.complete = complete
-    }
-}
-
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
@@ -70,7 +44,7 @@ extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //store.delete(position: indexPath.row)
+            deleteTask(byId: self.unfinishedTasks[indexPath.row].value(forKey: "id") as! String)
             unfinishedTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

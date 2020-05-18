@@ -128,7 +128,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="completeBy" destination="qBs-2h-O1z" id="r53-rD-OJu"/>
-                        <outlet property="newTask" destination="FdO-oe-63l" id="Rdd-OW-z4A"/>
+                        <outlet property="newTask" destination="FdO-oe-63l" id="k0k-A6-pk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxl-dB-dlq" sceneMemberID="firstResponder"/>

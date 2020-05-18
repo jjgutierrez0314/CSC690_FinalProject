@@ -228,7 +228,7 @@ func deleteObject(taskId: String) -> Bool {
     }
     
     let managedContex = appDelegate.persistentContainer.viewContext
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Task")
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Tasks")
     fetchRequest.predicate = NSPredicate(format: "id = %@", taskId)
     
     do {
