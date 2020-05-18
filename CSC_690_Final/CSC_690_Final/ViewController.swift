@@ -23,7 +23,12 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         // Do any additional setup after loading the view.
         
-        unfinishedTasks = getAllTasks()
+        let temp = getAllTasks()
+        for element in temp {
+            if (element.value(forKey: "complete") as? Bool == false) {
+                unfinishedTasks.append(element)
+            }
+        }
         tableView.reloadData()
     }
     
@@ -37,6 +42,7 @@ extension ViewController: UITableViewDelegate {
         let tableCell = tableView.cellForRow(at: indexPath)
         if tableCell?.imageView?.image == UIImage(named: "uncheckedBox") {
             tableCell?.imageView?.image = UIImage(named: "checkedBox")
+            completeTask(byId: self.unfinishedTasks[indexPath.row].value(forKey: "id") as! String)
         } else {
             tableCell?.imageView?.image = UIImage(named: "uncheckedBox")
         }
