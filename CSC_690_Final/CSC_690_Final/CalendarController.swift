@@ -42,11 +42,11 @@ func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
                 taskToSave.title = "Task started on \(sDate)"
                 taskToSave.startDate = endDate.addingTimeInterval(-60*60)
                 taskToSave.endDate = endDate
-                taskToSave.notes = "Your task to complete today is: \(task)\n\n\n\nTask made by using the app developed by Osbaldo Martinez and John Gutierrez for their CSC 690 final project."
+                taskToSave.notes = "Your task to complete today is:\n \(task)\n\n\n\nTask made by using the app developed by Osbaldo Martinez and John Gutierrez for their CSC 690 final project."
                 taskToSave.calendar = taskStore.defaultCalendarForNewEvents
                 
                 do {
-                    try taskStore.save(taskToSave, span: .futureEvents)
+                    try taskStore.save(taskToSave, span: .thisEvent)
                 } catch let nsErr as NSError {
                     print("Failed to save task to calendar: \(nsErr)")
                 }
