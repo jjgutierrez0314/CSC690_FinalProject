@@ -19,6 +19,7 @@ func daysToCompleteTask(start: Date, finish: Date) -> Int {
     }
     
     print("There are \(remainingDays) days remaining.")
+    
     return remainingDays
     
 }
@@ -27,6 +28,10 @@ func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
     
     let taskStore: EKEventStore = EKEventStore()
     
+    let dateFormatterPrint = DateFormatter()
+    dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+    let sDate: String = dateFormatterPrint.string(from: startDate)
+    
     taskStore.requestAccess(to: .event) { (isGranted, err) in
         
         guard  let error = err else {
@@ -34,14 +39,14 @@ func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
                 
                 let taskToSave:EKEvent = EKEvent(eventStore: taskStore)
                 
-                taskToSave.title = "Task To Complete"
-                taskToSave.startDate = startDate
+                taskToSave.title = "Task started on \(sDate)"
+                taskToSave.startDate = endDate.addingTimeInterval(-60*60)
                 taskToSave.endDate = endDate
-                taskToSave.notes = task
+                taskToSave.notes = "Your task to complete today is: \(task)\n\n\n\nTask made by using the app developed by Osbaldo Martinez and John Gutierrez for their CSC 690 final project."
                 taskToSave.calendar = taskStore.defaultCalendarForNewEvents
                 
                 do {
-                    try taskStore.save(taskToSave, span: .thisEvent)
+                    try taskStore.save(taskToSave, span: .futureEvents)
                 } catch let nsErr as NSError {
                     print("Failed to save task to calendar: \(nsErr)")
                 }
