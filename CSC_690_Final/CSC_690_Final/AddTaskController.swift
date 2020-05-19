@@ -27,9 +27,10 @@ class AddTaskController: UIViewController{
             return
         }
         completeBy.datePickerMode = UIDatePicker.Mode.date
-
+        
         saveNewTask(task: task, completeDate: completeBy.date)
-        _ = navigationController?.popToRootViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
+        
         
     }
     

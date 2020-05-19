@@ -16,13 +16,14 @@ class ViewController: UIViewController {
     var selectedRow: Int?
     var managedObjectContext: NSManagedObjectContext!
     
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         title = "Task List"
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
         
+        unfinishedTasks.removeAll()
         let temp = getAllTasks()
         for element in temp {
             if (element.value(forKey: "complete") as? Bool == false) {
@@ -31,8 +32,6 @@ class ViewController: UIViewController {
         }
         tableView.reloadData()
     }
-    
-    
     
 }
 
