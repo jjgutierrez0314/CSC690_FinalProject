@@ -58,6 +58,7 @@ extension ViewController: UITableViewDelegate {
                     } else {
                         print("Edit task failed.")
                     }
+                    self.unfinishedTasks[indexPath.row].setValue(taskToSave, forKey: "task")
                     self.tableView.reloadData()
             }
             
@@ -65,6 +66,15 @@ extension ViewController: UITableViewDelegate {
                 [unowned self] action in guard let textField = alert.textFields?.first, let taskToSave = textField.text else{
                     return
                 }
+                guard let t = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
+                    print("return error task")
+                    return
+                }
+                guard let d = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                    print("return error date")
+                    return
+                }
+                deleteEventFromCalendar(title: t, endDate: d)
                 print(taskToSave)
                 let success = deleteObject(taskId: (self.unfinishedTasks[indexPath.row].value(forKey: "id") as? String)!)
                 if (success) {
@@ -73,7 +83,6 @@ extension ViewController: UITableViewDelegate {
                     print("Delete task failed.")
                 }
                 //remove deleted object from array
-                //deleteEventFromCalendar(title: self.unfinishedTasks[indexPath.row], endDate: <#T##Date#>)
                 self.unfinishedTasks.remove(at: indexPath.row)
                 self.tableView.reloadData()
             }
