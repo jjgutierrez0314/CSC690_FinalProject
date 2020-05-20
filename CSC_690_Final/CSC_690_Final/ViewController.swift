@@ -147,12 +147,27 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
+        var taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
         let selectedTask = unfinishedTasks[indexPath.row]
-        taskCell.textLabel?.numberOfLines = 0;
-        taskCell.textLabel?.text = "\(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
-        taskCell.imageView?.image = UIImage(named: "uncheckedBox")
+        taskCell.textLabel?.numberOfLines = 0
+        let titleString = "\(selectedTask.value(forKeyPath: "task") as! String)"
+        let subtitleString = "Days remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
+        taskCell.textLabel?.attributedText = makeAttributedString(title: titleString, subtitle: subtitleString)
+//        taskCell.textLabel?.text = "\(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
+//        taskCell.imageView?.image = UIImage(named: "uncheckedBox")
         return taskCell
+    }
+    
+    func makeAttributedString(title: String, subtitle: String) -> NSAttributedString {
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.purple]
+        let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+
+        let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
+        let subtitleString = NSAttributedString(string: subtitle, attributes: subtitleAttributes)
+
+        titleString.append(subtitleString)
+
+        return titleString
     }
 }
 

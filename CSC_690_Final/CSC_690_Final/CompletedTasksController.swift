@@ -21,7 +21,7 @@ class CompletedTasksController: UIViewController{
     
     override func viewDidLoad() {
            super.viewDidLoad()
-           title = "Task List"
+           title = "Completed Tasks"
            completeTasks.delegate = self
            completeTasks.dataSource = self
            // Do any additional setup after loading the view.
