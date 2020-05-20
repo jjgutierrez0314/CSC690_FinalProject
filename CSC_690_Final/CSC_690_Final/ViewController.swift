@@ -121,6 +121,15 @@ extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            guard let t = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
+                print("return error task")
+                return
+            }
+            guard let d = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                print("return error date")
+                return
+            }
+            deleteEventFromCalendar(title: t, endDate: d)
             deleteTask(byId: self.unfinishedTasks[indexPath.row].value(forKey: "id") as! String)
             unfinishedTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
