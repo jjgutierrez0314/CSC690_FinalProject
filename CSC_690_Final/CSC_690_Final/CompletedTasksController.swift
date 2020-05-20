@@ -75,7 +75,7 @@ extension CompletedTasksController: UITableViewDataSource {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "completed_tasks") ?? UITableViewCell()
         let selectedTask = completedTasks[indexPath.row]
         taskCell.accessoryType = .checkmark
-        taskCell.textLabel?.text = selectedTask.value(forKeyPath: "task") as? String
+        taskCell.textLabel?.text = "Task: \((selectedTask.value(forKeyPath: "task") as? String)!)"
         return taskCell
     }
     
