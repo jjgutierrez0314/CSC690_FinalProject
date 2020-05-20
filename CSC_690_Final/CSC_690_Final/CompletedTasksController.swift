@@ -18,22 +18,28 @@ class CompletedTasksController: UIViewController{
     var managedObjectContext: NSManagedObjectContext!
     
     var completedTasks: [NSManagedObject] = []
-    override func viewWillAppear(_ animeated: Bool) {
-        super.viewDidLoad()
-        title = "Completed Tasks"
-        completeTasks.delegate = self
-        completeTasks.dataSource = self
-        // Do any additional setup after loading the view.
-        
-        completedTasks.removeAll()
-        let temp = getAllTasks()
-        for element in temp {
-            if (element.value(forKey: "complete") as? Bool == true) {
-                completedTasks.append(element)
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           title = "Task List"
+           completeTasks.delegate = self
+           completeTasks.dataSource = self
+           // Do any additional setup after loading the view.
+           
+           completeTasks.register(UITableViewCell.self, forCellReuseIdentifier: "task_cell")
+           completeTasks.dataSource = self
+       }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            
+            let temp = getAllTasks()
+            for element in temp {
+                if (element.value(forKey: "complete") as! Bool == true) {
+                    completedTasks.append(element)
+                }
             }
         }
-        completeTasks.reloadData()
-    }
     
 }
 
@@ -44,6 +50,15 @@ extension CompletedTasksController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            guard let t = self.completedTasks[indexPath.row].value(forKey: "task") as? String else {
+                print("return error task")
+                return
+            }
+            guard let d = self.completedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                print("return error date")
+                return
+            }
+            deleteEventFromCalendar(title: t, endDate: d)
             deleteTask(byId: self.completedTasks[indexPath.row].value(forKey: "id") as! String)
             completedTasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
