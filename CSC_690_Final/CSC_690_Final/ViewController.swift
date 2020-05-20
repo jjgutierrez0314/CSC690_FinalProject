@@ -137,7 +137,8 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
         let selectedTask = unfinishedTasks[indexPath.row]
-        taskCell.textLabel?.text = "Task: \(selectedTask.value(forKeyPath: "task") as! String)  Days remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
+        taskCell.textLabel?.numberOfLines = 0;
+        taskCell.textLabel?.text = "Task: \(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
         taskCell.imageView?.image = UIImage(named: "uncheckedBox")
         return taskCell
     }
