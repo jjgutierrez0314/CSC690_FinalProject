@@ -58,7 +58,6 @@ extension ViewController: UITableViewDelegate {
                     } else {
                         print("Edit task failed.")
                     }
-                    self.unfinishedTasks[indexPath.row].setValue(taskToSave, forKey: "task")
                     self.tableView.reloadData()
             }
             
