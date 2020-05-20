@@ -26,7 +26,7 @@ func daysToCompleteTask(finish: Date) -> Int {
     
 }
 
-func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
+func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) -> Void {
     
     let taskStore: EKEventStore = EKEventStore()
     
@@ -60,4 +60,24 @@ func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
         print("Could not save task to calendar: \(error)");
         
     }
+}
+
+func deleteEventFromCalendar (title: String, endDate: Date) -> Void {
+    let taskStore: EKEventStore = EKEventStore()
+    
+    let sDate = endDate.addingTimeInterval(-60*60)
+    
+    let predicate = taskStore.predicateForEvents(withStart: sDate, end: endDate, calendars: nil)
+    
+    let events = taskStore.events(matching: predicate)
+    
+        for elem in events {
+            if elem.title == "Task: \(title)" {
+                do {
+                 try taskStore.remove(elem, span: .thisEvent)
+                } catch {
+                    print("Error removing from calendar.")
+                }
+            }
+        }
 }

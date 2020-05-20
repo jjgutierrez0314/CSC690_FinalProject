@@ -73,6 +73,7 @@ extension ViewController: UITableViewDelegate {
                     print("Delete task failed.")
                 }
                 //remove deleted object from array
+                //deleteEventFromCalendar(title: self.unfinishedTasks[indexPath.row], endDate: <#T##Date#>)
                 self.unfinishedTasks.remove(at: indexPath.row)
                 self.tableView.reloadData()
             }
