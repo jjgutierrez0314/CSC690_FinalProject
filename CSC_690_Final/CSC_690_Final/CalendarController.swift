@@ -81,3 +81,10 @@ func deleteEventFromCalendar (title: String, endDate: Date) -> Void {
             }
         }
 }
+
+func editCalendarEvent(with newTask: String, oldTask: String, startDate: Date, endDate: Date) -> Void {
+    
+    deleteEventFromCalendar(title: oldTask, endDate: endDate)
+    addTaskToCalendar(with: startDate, endDate: endDate, task: newTask)
+    
+}
