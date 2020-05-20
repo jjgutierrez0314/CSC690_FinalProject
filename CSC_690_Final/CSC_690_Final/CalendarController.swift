@@ -9,9 +9,11 @@
 import UIKit
 import EventKit
 
-func daysToCompleteTask(start: Date, finish: Date) -> Int {
+func daysToCompleteTask(finish: Date) -> Int {
     
     let currentCalendar: Calendar = Calendar.current
+    
+    let start: Date = Date()
     
     guard let remainingDays: Int = currentCalendar.dateComponents([.day], from: start, to: finish).day else {
         print("Could not calculate remaining days")
@@ -39,10 +41,10 @@ func addTaskToCalendar(with startDate: Date, endDate: Date, task: String) {
                 
                 let taskToSave:EKEvent = EKEvent(eventStore: taskStore)
                 
-                taskToSave.title = "Task started on \(sDate)"
+                taskToSave.title = "Task: \(task)"
                 taskToSave.startDate = endDate.addingTimeInterval(-60*60)
                 taskToSave.endDate = endDate
-                taskToSave.notes = "Your task to complete today is:\n \(task)\n\n\n\nTask made by using the app developed by Osbaldo Martinez and John Gutierrez for their CSC 690 final project."
+                taskToSave.notes = "Your task to complete today was started on:\n \(sDate)\n\n\n\nTask made by using the app developed by Osbaldo Martinez and John Gutierrez for their CSC 690 final project."
                 taskToSave.calendar = taskStore.defaultCalendarForNewEvents
                 
                 do {

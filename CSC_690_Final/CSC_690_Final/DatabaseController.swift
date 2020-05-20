@@ -13,7 +13,7 @@ import CoreData
 
 //Takes a String with the task and a Date to complete task.
 //Returns the objects in the database
-func saveNewTask(task: String, completeDate: Date) -> [NSManagedObject] {
+func saveNewTask(task: String, completeDate: Date) -> Void {
     
     let createdDate: Date = Date()
     
@@ -26,8 +26,6 @@ func saveNewTask(task: String, completeDate: Date) -> [NSManagedObject] {
     } else {
         print("Failed to save the task.")
     }
-    
-    return getAllTasks()
     
 }
 
@@ -57,7 +55,7 @@ func getTask(byId: String) -> NSManagedObject? {
 
 //Accepts a String with task id and a String with the new task.
 //It updates the task in the database.
-func editTask(byId: String, newTask: String) -> [NSManagedObject] {
+func editTask(byId: String, newTask: String) -> Void {
     
     let success = editTaskById(taskId: byId, newTask: newTask)
     
@@ -67,13 +65,11 @@ func editTask(byId: String, newTask: String) -> [NSManagedObject] {
         print("Failed to edit the task.")
     }
     
-    return getAllTasks()
-    
 }
 
 //Accepts a String with task id and a Date with the new date.
 //It updates the date in the database.
-func editDate(byId: String, newDate: Date) -> [NSManagedObject] {
+func editDate(byId: String, newDate: Date) -> Void {
     
     let success = editTaskDateById(taskId: byId, newDate: newDate)
     
@@ -83,13 +79,11 @@ func editDate(byId: String, newDate: Date) -> [NSManagedObject] {
         print("Failed to edit the date.")
     }
     
-    return getAllTasks()
-    
 }
 
 //Takes a String with the task id.
 //Updates the complete property to true in database.
-func completeTask(byId: String) -> [NSManagedObject] {
+func completeTask(byId: String) -> Void {
     
     let success = markCompleteTask(taskId: byId)
     
@@ -99,13 +93,11 @@ func completeTask(byId: String) -> [NSManagedObject] {
         print("Failed to complete the task.")
     }
     
-    return getAllTasks()
-    
 }
 
 //Deletes task.
 //Accepts an String with the id of the task to be deleted.
-func deleteTask(byId: String) -> [NSManagedObject] {
+func deleteTask(byId: String) -> Void {
     
     let success = deleteObject(taskId: byId)
     
@@ -114,7 +106,4 @@ func deleteTask(byId: String) -> [NSManagedObject] {
     } else {
         print("Failed to delete the task.")
     }
-    
-    return getAllTasks()
-    
 }
