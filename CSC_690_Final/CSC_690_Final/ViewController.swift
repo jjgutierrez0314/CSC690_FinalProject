@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Task List"
+        title = "Unfinished Tasks List"
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -55,13 +55,27 @@ extension ViewController: UITableViewDelegate {
                         [unowned self] action in guard let textField = alert.textFields?.first, let taskToSave = textField.text else{
                         return
                     }
+                    guard let t = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
+                        print("return error task")
+                        return
+                    }
+                    guard let ed = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                        print("return error date")
+                        return
+                    }
+                    guard let sd = self.unfinishedTasks[indexPath.row].value(forKey: "createdOn") as? Date else {
+                        print("return error date")
+                        return
+                    }
+                    
+                    editCalendarEvent(with: taskToSave, oldTask: t, startDate: sd, endDate: ed)
+                    
                     let success = editTaskById(taskId: (self.unfinishedTasks[indexPath.row].value(forKey: "id") as? String)!, newTask: taskToSave)
                     if (success) {
                         print("Edited Task.")
                     } else {
                         print("Edit task failed.")
                     }
-                    self.unfinishedTasks[indexPath.row].setValue(taskToSave, forKey: "task")
                     self.tableView.reloadData()
             }
             
@@ -69,15 +83,15 @@ extension ViewController: UITableViewDelegate {
                 [unowned self] action in guard let textField = alert.textFields?.first, let taskToSave = textField.text else{
                     return
                 }
-                guard let t = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
+                guard let t0 = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
                     print("return error task")
                     return
                 }
-                guard let d = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                guard let d0 = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
                     print("return error date")
                     return
                 }
-                deleteEventFromCalendar(title: t, endDate: d)
+                deleteEventFromCalendar(title: t0, endDate: d0)
                 print(taskToSave)
                 let success = deleteObject(taskId: (self.unfinishedTasks[indexPath.row].value(forKey: "id") as? String)!)
                 if (success) {
@@ -94,6 +108,15 @@ extension ViewController: UITableViewDelegate {
                 [unowned self] action in guard let textField = alert.textFields?.first, let taskToSave = textField.text else{
                     return
                 }
+                guard let t1 = self.unfinishedTasks[indexPath.row].value(forKey: "task") as? String else {
+                    print("return error task")
+                    return
+                }
+                guard let d1 = self.unfinishedTasks[indexPath.row].value(forKey: "completeBy") as? Date else {
+                    print("return error date")
+                    return
+                }
+                deleteEventFromCalendar(title: t1, endDate: d1)
                 print(taskToSave)
                 let success = markCompleteTask(taskId: (self.unfinishedTasks[indexPath.row].value(forKey: "id") as? String)!)
                 if (success) {
@@ -147,20 +170,21 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
+        let taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
         let selectedTask = unfinishedTasks[indexPath.row]
         taskCell.textLabel?.numberOfLines = 0
         let titleString = "\(selectedTask.value(forKeyPath: "task") as! String)"
         let subtitleString = "Days remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
         taskCell.textLabel?.attributedText = makeAttributedString(title: titleString, subtitle: subtitleString)
 //        taskCell.textLabel?.text = "\(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
-//        taskCell.imageView?.image = UIImage(named: "uncheckedBox")
+        taskCell.imageView?.image = UIImage(named: "uncheckedBox")
         return taskCell
     }
     
     func makeAttributedString(title: String, subtitle: String) -> NSAttributedString {
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.purple]
-        let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.black]
+        let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline),
+            NSAttributedString.Key.foregroundColor: UIColor.red]
 
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
         let subtitleString = NSAttributedString(string: subtitle, attributes: subtitleAttributes)

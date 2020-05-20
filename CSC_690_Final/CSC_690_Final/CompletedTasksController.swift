@@ -21,12 +21,13 @@ class CompletedTasksController: UIViewController{
     
     override func viewDidLoad() {
            super.viewDidLoad()
-           title = "Completed Tasks"
+
+           title = "Completed Tasks List"
            completeTasks.delegate = self
            completeTasks.dataSource = self
            // Do any additional setup after loading the view.
            
-           completeTasks.register(UITableViewCell.self, forCellReuseIdentifier: "task_cell")
+           completeTasks.register(UITableViewCell.self, forCellReuseIdentifier: "completed_tasks")
            completeTasks.dataSource = self
        }
     
@@ -74,7 +75,8 @@ extension CompletedTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "completed_tasks") ?? UITableViewCell()
         let selectedTask = completedTasks[indexPath.row]
-        taskCell.textLabel?.text = selectedTask.value(forKeyPath: "task") as? String
+        taskCell.accessoryType = .checkmark
+        taskCell.textLabel?.text = "\((selectedTask.value(forKeyPath: "task") as? String)!)"
         return taskCell
     }
     
