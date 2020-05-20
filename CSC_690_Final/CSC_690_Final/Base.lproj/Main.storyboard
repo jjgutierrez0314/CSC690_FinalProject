@@ -40,6 +40,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ylT-Xd-4Za">
+                        <barButtonItem key="leftBarButtonItem" title="..." image="ellipsis" catalog="system" id="wRE-Nw-h4c">
+                            <connections>
+                                <segue destination="LhJ-tF-2TK" kind="show" id="V07-oz-lql"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="bPC-6J-7bi">
                             <connections>
                                 <segue destination="mhc-3g-5TK" kind="show" id="wUN-V2-0ux"/>
@@ -135,8 +140,50 @@
             </objects>
             <point key="canvasLocation" x="1002.8985507246377" y="95.758928571428569"/>
         </scene>
+        <!--Completed Tasks Controller-->
+        <scene sceneID="nd9-To-46u">
+            <objects>
+                <viewController id="LhJ-tF-2TK" customClass="CompletedTasksController" customModule="CSC_690_Final" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t70-Sb-xxu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pbM-tC-OK5">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="completed_tasks" id="j3w-iM-y4y">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j3w-iM-y4y" id="8te-xD-Vlh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DBU-hG-Emk" firstAttribute="trailing" secondItem="pbM-tC-OK5" secondAttribute="trailing" id="CXw-LT-wwe"/>
+                            <constraint firstItem="pbM-tC-OK5" firstAttribute="top" secondItem="DBU-hG-Emk" secondAttribute="top" id="S9T-An-GdR"/>
+                            <constraint firstItem="DBU-hG-Emk" firstAttribute="bottom" secondItem="pbM-tC-OK5" secondAttribute="bottom" id="Vhn-dO-L2r"/>
+                            <constraint firstItem="pbM-tC-OK5" firstAttribute="leading" secondItem="DBU-hG-Emk" secondAttribute="leading" id="YQM-aU-YEh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DBU-hG-Emk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ccp-DV-lYw"/>
+                    <connections>
+                        <outlet property="completeTasks" destination="pbM-tC-OK5" id="pGa-n1-Gkv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gf4-CC-5gW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="755"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>
     </resources>
 </document>

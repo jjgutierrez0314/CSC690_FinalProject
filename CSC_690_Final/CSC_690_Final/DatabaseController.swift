@@ -110,9 +110,9 @@ func deleteTask(byId: String) -> [NSManagedObject] {
     let success = deleteObject(taskId: byId)
     
     if (success) {
-        print("Successfully completed the task.")
+        print("Successfully deleted the task.")
     } else {
-        print("Failed to complete the task.")
+        print("Failed to delete the task.")
     }
     
     return getAllTasks()

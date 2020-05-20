@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28B189F4246C89CC0038570C /* AddTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B189F3246C89CC0038570C /* AddTaskController.swift */; };
+		28B189F62474B7020038570C /* CompletedTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B189F52474B7020038570C /* CompletedTasksController.swift */; };
 		E95C1ED4246A082D0098E2E8 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C1ED3246A082D0098E2E8 /* CalendarController.swift */; };
 		E967EEC72465FD2600EB8088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEC62465FD2600EB8088 /* AppDelegate.swift */; };
 		E967EEC92465FD2600EB8088 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967EEC82465FD2600EB8088 /* SceneDelegate.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		28B189F3246C89CC0038570C /* AddTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskController.swift; sourceTree = "<group>"; };
+		28B189F52474B7020038570C /* CompletedTasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksController.swift; sourceTree = "<group>"; };
 		E95C1ED3246A082D0098E2E8 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		E967EEC32465FD2600EB8088 /* CSC_690_Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSC_690_Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E967EEC62465FD2600EB8088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				E967EECA2465FD2600EB8088 /* ViewController.swift */,
 				28B189F3246C89CC0038570C /* AddTaskController.swift */,
+				28B189F52474B7020038570C /* CompletedTasksController.swift */,
 				E967EECC2465FD2600EB8088 /* Main.storyboard */,
 				E967EED22465FD2A00EB8088 /* Assets.xcassets */,
 				E967EECF2465FD2600EB8088 /* CSC_690_Final.xcdatamodeld */,
@@ -280,6 +283,7 @@
 				E967EEFC2466641700EB8088 /* DatabaseController.swift in Sources */,
 				E95C1ED4246A082D0098E2E8 /* CalendarController.swift in Sources */,
 				E967EED12465FD2600EB8088 /* CSC_690_Final.xcdatamodeld in Sources */,
+				28B189F62474B7020038570C /* CompletedTasksController.swift in Sources */,
 				E967EEFA2465FDF600EB8088 /* Database.swift in Sources */,
 				E967EEC92465FD2600EB8088 /* SceneDelegate.swift in Sources */,
 			);

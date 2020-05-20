@@ -35,10 +35,6 @@ class AddTaskController: UIViewController{
     }
     
     
-    
-    //ToDo
-    //take in input from newTask and completeDate
-    //store it into Core Data
 }
 
 
