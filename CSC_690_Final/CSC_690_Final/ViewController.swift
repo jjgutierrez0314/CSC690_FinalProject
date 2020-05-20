@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        unfinishedTasks.removeAll()
         let temp = getAllTasks()
         for element in temp {
             if (element.value(forKey: "complete") as! Bool == false) {
