@@ -37,6 +37,8 @@ class ViewController: UIViewController {
                 unfinishedTasks.append(element)
             }
         }
+        
+        tableView.reloadData()
     }
     
 }
@@ -148,7 +150,7 @@ extension ViewController: UITableViewDataSource {
         let taskCell = tableView.dequeueReusableCell(withIdentifier: "task_cell") ?? UITableViewCell()
         let selectedTask = unfinishedTasks[indexPath.row]
         taskCell.textLabel?.numberOfLines = 0;
-        taskCell.textLabel?.text = "Task: \(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
+        taskCell.textLabel?.text = "\(selectedTask.value(forKeyPath: "task") as! String)  \nDays remaining to complete:\t\(daysToCompleteTask(finish: selectedTask.value(forKey: "completeBy") as! Date))"
         taskCell.imageView?.image = UIImage(named: "uncheckedBox")
         return taskCell
     }
